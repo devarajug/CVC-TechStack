@@ -3,11 +3,13 @@ from sys import argv
 from os.path import join
 from datetime import datetime
 from sys import exit as sysexit
+from warnings import filterwarnings
 from openpyxl import Workbook
 from openpyxl.styles import Font
 from openpyxl.styles import Alignment
 from openpyxl.styles import PatternFill
 from openpyxl.utils import get_column_letter
+from get_techstack_vulnerabilities import FetchTechStackVulnerabilities
 
 class CreateXl:
 
@@ -118,11 +120,17 @@ class CreateXl:
 
 if __name__ == "__main__":
 
+    filterwarnings('ignore')
+
+    techstack = FetchTechStackVulnerabilities()
+    df_techstack = techstack.techStackDataToDf()
+
     output_location = argv[1].split("\\")
     output_location.insert(1, sep)
+    
     xls = CreateXl(
         xls_file_name=output_location,
         df_cvc=None,
-        df_techstack=None
+        df_techstack=df_techstack
     )
     xls.create()
