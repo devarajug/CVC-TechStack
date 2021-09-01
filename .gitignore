@@ -1,2 +1,3 @@
 venv\*
 dependency-check\*
+__pycache__\*
