@@ -92,17 +92,17 @@ class CreateXl:
                     cell.font = header_font
                     cell.alignment = centered_alignement
                     column_letter = get_column_letter(col_num)
-                    column_dimensions = worksheet.column_dimensions(column_letter)
+                    column_dimensions = worksheet.column_dimensions[column_letter]
                     column_dimensions.width = column_width
                 for i in range(len(self.df_techstack)):
                     row_num+=1
                     row = [
-                        (self.df_techstack[i, 'Product'], 'Normal'),
-                        (self.df_techstack[i, 'Description'], 'Normal'),
-                        (self.df_techstack[i, 'CVE'], 'Normal'),
-                        (self.df_techstack[i, 'Severity'], 'Normal'),
-                        (self.df_techstack[i, 'Status'], 'Normal'),
-                        (self.df_techstack[i, 'Auditor Comment'], 'Normal'),
+                        (self.df_techstack.loc[i, 'Product'], 'Normal'),
+                        (self.df_techstack.loc[i, 'Description'], 'Normal'),
+                        (self.df_techstack.loc[i, 'CVE'], 'Normal'),
+                        (self.df_techstack.loc[i, 'Severity'], 'Normal'),
+                        (self.df_techstack.loc[i, 'Status'], 'Normal'),
+                        (self.df_techstack.loc[i, 'Auditor Comment'], 'Normal'),
                     ]
 
                     for col_num, (cell_value, cell_format) in enumerate(row, 1):
@@ -123,14 +123,13 @@ if __name__ == "__main__":
     filterwarnings('ignore')
 
     techstack = FetchTechStackVulnerabilities()
-    df_techstack = techstack.techStackDataToDf()
-
+    df_tech_stack = techstack.techStackDataToDf()
     output_location = argv[1].split("\\")
     output_location.insert(1, sep)
     
     xls = CreateXl(
         xls_file_name=output_location,
         df_cvc=None,
-        df_techstack=df_techstack
+        df_techstack=df_tech_stack
     )
     xls.create()
