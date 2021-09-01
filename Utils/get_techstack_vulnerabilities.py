@@ -12,6 +12,7 @@ class FetchTechStackVulnerabilities:
         self.proxyport = proxy_port
         self.proxyuser = proxy_user
         self.proxypass = proxy_pass
+        self.startIndex = 0
         self.noOfIssuesCount = 0
         self.countFrom = 0
         self.countThrough = 0
