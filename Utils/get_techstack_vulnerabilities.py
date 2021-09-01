@@ -144,7 +144,7 @@ class FetchTechStackVulnerabilities:
                             severity.append("No vulnerability")
                             description.append("No vulnerability")
                             auditor_comment.append('No vulnerability')
-                            status.append("Closed")
+                            status.append("No Vulnerability")
                             print(productname[-1]+ " : " + cve[-1] + " : " + severity[-1])
                 else:
                     sysexit("[Error] Unable to fetch no of issues please re run script...")
