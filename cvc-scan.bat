@@ -1,5 +1,14 @@
 @echo off
 
+if exist "%cd%\venv" (
+    call venv\Scripts\activate
+    pip install -r requirements.txt
+) else (
+    pip install virtualenv
+    python -m virtualenv venv
+    call venv\Scripts\activate
+    pip install -r requirements.txt
+)
 set /p input="Enter Jars Location: "
 set /p output="Enter Output Location: "
 set /p proxycheck="Are You Running This Script Behind Proxy Y/N : "
