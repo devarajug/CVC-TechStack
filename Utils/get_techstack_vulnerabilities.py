@@ -45,9 +45,9 @@ class FetchTechStackVulnerabilities:
             sysexit(e)
         return data
     
-    def scrapeTechStackData(self, cpe, startindex=0):
+    def scrapeTechStackData(self, cpe, startIndex=0):
         try:
-            url = self.url.format(cpe, str(startindex))
+            url = self.url.format(cpe, str(startIndex))
             data = self.getDataFromWeb(url=url)
             parsed_data = BeautifulSoup(data.text, 'lxml')
             self.noOfIssuesCount = int(parsed_data.select_one('strong[data-testid=vuln-matching-records-count]').text)
