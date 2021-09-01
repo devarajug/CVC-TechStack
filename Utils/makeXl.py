@@ -25,7 +25,7 @@ class CreateXl:
 
             workbook = Workbook()
             workbook.remove(workbook.active)
-            header_font = Font(name='Fira Code',bold=True,color='FFFFFF')
+            header_font = Font(name='Calibri',bold=True,color='FFFFFF')
             centered_alignement = Alignment(horizontal='center', vertical='center')
             wrapped_alignement = Alignment(vertical='top', wrap_text=False)
             fill = PatternFill(start_color='5FABE6', end_color='5FABE6', fill_type='solid')
