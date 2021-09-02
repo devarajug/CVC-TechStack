@@ -53,7 +53,8 @@ goto end
         --scan "%input%"^
         --out "%output%"
 
-    call python "Utils\makeXl.py" %proxyname% %proxyport% %proxyuser% %proxypass% %output%
+    call python "Utils\makeXl.py" %proxyname% %proxyport% %proxyuser% %proxypass% %input% %output%
+
 :withoutproxy
 
     if exist "%cd%\venv" (
@@ -83,11 +84,10 @@ goto end
         --scan "%input%"^
         --out "%output%"
     
-    call python "Utils\makeXl.py" %output%
+    call python "Utils\makeXl.py" %input% %output%
 
 :end
     echo.
-    echo Scan Finished...
-    echo Generating xls report for both cvc and techstack...
+    echo [Info] Scan Finished Reports Generated...
     deactivate
     
