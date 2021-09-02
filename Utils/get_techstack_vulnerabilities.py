@@ -2,6 +2,10 @@ from requests import Session
 from requests.auth import HTTPProxyAuth
 from sys import exit as sysexit
 from bs4 import BeautifulSoup
+from os.path import join
+from os.path import abspath
+from os.path import dirname
+from json import loads
 import pandas as pd
 
 class FetchTechStackVulnerabilities:
@@ -17,13 +21,6 @@ class FetchTechStackVulnerabilities:
         self.countFrom = 0
         self.countThrough = 0
         self.comments = comments
-        self.cpeMatchStrings = {
-            "spring_framework 5.2.9" : "cpe:/a:pivotal_software:spring_framework:5.2.9",
-            "PostgreSQL 11.10" : "cpe:/a:postgresql:postgresql:11.10",
-            "Amazon Corretto 1.8.0_252" : "cpe:/a:oracle:jdk:1.8.0:update_252",
-            "Apache Tomcat 8.5.69" : "cpe:/a:apache:tomcat:8.5.69",
-            "Apache Tomcat 9.0.50" : "cpe:/a:apache:tomcat:9.0.50"
-        }
         
     def getDataFromWeb(self, url):
         try:
@@ -45,6 +42,17 @@ class FetchTechStackVulnerabilities:
             sysexit(e)
         return data
     
+    def getTechStackDetails(self):
+
+        try:
+            with open(join(dirname(abspath(__file__)), 'tech_stack_details.json'), 'r') as rb:
+                cpematchstrings = loads(rb.read())
+
+        except Exception as e:
+            print("[Error] Unable to read tech stack data from file, file may missed or deleted...")
+            sysexit(e)
+        return cpematchstrings
+    
     def scrapeTechStackData(self, cpe, startIndex=0):
         try:
             url = self.url.format(cpe, str(startIndex))
@@ -65,7 +73,8 @@ class FetchTechStackVulnerabilities:
             print()
             print("Analysis Started. It Takes Time to Complete, Please Wait Patiently....")
             productname, cve, severity, description, auditor_comment, status = [[] for i in range(6)]
-            for product, cpe in self.cpeMatchStrings.items():
+            cpeMatchStrings=self.getTechStackDetails()
+            for product, cpe in cpeMatchStrings.items():
                 print()
                 data = self.scrapeTechStackData(cpe=cpe)
                 if self.noOfIssuesCount == 0:
