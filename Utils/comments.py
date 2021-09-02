@@ -13,7 +13,7 @@ class Comments:
     def readAuditorCommentsFile(self):
         if isfile(self.auditor_comments_file):
             try:
-                with open(self.auditor_comments_file, 'r') as rb:
+                with open(self.auditor_comments_file, 'r', encoding='utf8') as rb:
                     comments_data = loads(rb.read())
             except Exception as e:
                 comments_data = {}

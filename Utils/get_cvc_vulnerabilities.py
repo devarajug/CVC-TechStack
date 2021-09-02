@@ -17,7 +17,7 @@ class FetchCvcVulnerabilities:
     def readCVCDataFromJsonFile(self):
         if isfile(self.json_file_path):
             try:
-                with open(self.json_file_path, 'r') as f:
+                with open(self.json_file_path, 'r', encoding='utf8') as f:
                     data = f.read()
                     if search(self.remove_error, data):
                         data = sub(self.remove_error, '', data)
