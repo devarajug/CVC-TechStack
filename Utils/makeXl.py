@@ -1,4 +1,4 @@
-from os import sep
+from os import path, sep
 from sys import argv
 from os.path import join
 from datetime import datetime
@@ -10,6 +10,7 @@ from openpyxl.styles import Alignment
 from openpyxl.styles import PatternFill
 from openpyxl.utils import get_column_letter
 from comments import Comments
+from get_cvc_vulnerabilities import FetchCvcVulnerabilities
 from get_techstack_vulnerabilities import FetchTechStackVulnerabilities
 
 class CreateXl:
@@ -26,8 +27,8 @@ class CreateXl:
             workbook = Workbook()
             workbook.remove(workbook.active)
             header_font = Font(name='Calibri',bold=True,color='FFFFFF')
-            centered_alignement = Alignment(horizontal='center', vertical='center')
-            wrapped_alignement = Alignment(vertical='top', wrap_text=False)
+            centered_alignment = Alignment(horizontal='center', vertical='center')
+            wrapped_alignment = Alignment(vertical='top', wrap_text=False)
             fill = PatternFill(start_color='5FABE6', end_color='5FABE6', fill_type='solid')
             
             if self.df_cvc is not None:
@@ -48,7 +49,7 @@ class CreateXl:
                     cell = worksheet.cell(row=row_num, column=col_num)
                     cell.value = column_title
                     cell.font = header_font
-                    cell.alignment = centered_alignement
+                    cell.alignment = centered_alignment
                     cell.fill = fill
                     column_letter = get_column_letter(col_num)
                     column_dimensions = worksheet.column_dimensions[column_letter]
@@ -70,7 +71,7 @@ class CreateXl:
                         cell = worksheet.cell(row=row_num, column=col_num)
                         cell.value = cell_value
                         cell.style = cell_format
-                        cell.alignement = wrapped_alignement
+                        cell.alignment = wrapped_alignment
 
             if self.df_techstack is not None:
                 tech_stack_sheet_columns = [
@@ -91,7 +92,7 @@ class CreateXl:
                     cell.value = column_title
                     cell.font = header_font
                     cell.fill = fill
-                    cell.alignment = centered_alignement
+                    cell.alignment = centered_alignment
                     column_letter = get_column_letter(col_num)
                     column_dimensions = worksheet.column_dimensions[column_letter]
                     column_dimensions.width = column_width
@@ -110,6 +111,7 @@ class CreateXl:
                         cell = worksheet.cell(row=row_num, column=col_num)
                         cell.value = cell_value
                         cell.style = cell_format
+                        cell.alignment = wrapped_alignment
                     
                 worksheet.freeze_panes = worksheet['A2']
                 worksheet.sheet_properties.tabColor = '5FABE6'
@@ -123,33 +125,44 @@ if __name__ == "__main__":
 
     filterwarnings('ignore')
     comments_data = Comments().readAuditorCommentsFile()
-    if len(argv[1:]) > 1:
+    
+    if len(argv[1:]) > 2:
         proxyname = argv[1]
         proxyport = argv[2]
         proxyuser = argv[3]
         proxypass = argv[4]
-
-        techstack = FetchTechStackVulnerabilities(
+        escaped_path = argv[5].split("\\")
+        output_path = argv[6]
+        output_location = output_path.split("\\")
+        output_location.insert(1, sep)
+        df_cvc = FetchCvcVulnerabilities(
+            cvc_json_file_path=join(*output_location, 'dependency-check-report.json'),
+            comments=comments_data,
+            escaped_path=escaped_path
+        ).cvcJsonDataToDataFrame()
+        df_tech_stack = FetchTechStackVulnerabilities(
             comments=comments_data,
             proxy_name=proxyname,
             proxy_port=proxyport,
             proxy_user=proxyuser,
             proxy_pass=proxypass
-        )
-        df_tech_stack = techstack.techStackDataToDf()
-        output_location = argv[5].split("\\")
+        ).techStackDataToDf()
     else:
-        techstack =  FetchTechStackVulnerabilities(
+        escaped_path = argv[1].split("\\")
+        output_location = argv[2].split("\\")
+        output_location.insert(1, sep)
+        df_cvc = FetchCvcVulnerabilities(
+            cvc_json_file_path=join(*output_location, 'dependency-check-report.json'),
+            comments=comments_data,
+            escaped_path=escaped_path
+        ).cvcJsonDataToDataFrame()
+        df_tech_stack =  FetchTechStackVulnerabilities(
             comments=comments_data
-        )
-        df_tech_stack = techstack.techStackDataToDf()
-        output_location = argv[1].split("\\")
-
-    output_location.insert(1, sep)
-    
+        ).techStackDataToDf()
+        
     xls = CreateXl(
         xls_file_name=output_location,
-        df_cvc=None,
+        df_cvc=df_cvc,
         df_techstack=df_tech_stack
     )
     xls.create()
