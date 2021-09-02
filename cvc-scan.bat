@@ -53,6 +53,7 @@ goto end
         --scan "%input%"^
         --out "%output%"
 
+    call python "Utils\makeXl.py" %proxyname% %proxyport% %proxyuser% %proxypass% %output%
 :withoutproxy
 
     if exist "%cd%\venv" (
@@ -81,6 +82,8 @@ goto end
         --disableYarnAudit^
         --scan "%input%"^
         --out "%output%"
+    
+    call python "Utils\makeXl.py" %output%
 
 :end
     echo.
