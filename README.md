@@ -7,7 +7,6 @@ Once clone the project switch either **winodws** or **linux** based on your os u
 ```
 git switch windows # for windows os
 git switch linux # for linux os
-
 ```
 
 # HOW IT WORKS
