@@ -1,0 +1,7 @@
+{
+    "spring_framework 5.2.9" : "cpe:/a:pivotal_software:spring_framework:5.2.9",
+    "PostgreSQL 11.10" : "cpe:/a:postgresql:postgresql:11.10",
+    "Amazon Corretto 1.8.0_252" : "cpe:/a:oracle:jdk:1.8.0:update_252",
+    "Apache Tomcat 8.5.69" : "cpe:/a:apache:tomcat:8.5.69",
+    "Apache Tomcat 9.0.50" : "cpe:/a:apache:tomcat:9.0.50"
+}
