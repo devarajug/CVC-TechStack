@@ -2063,6 +2063,10 @@
         "CVE-2021-22118": {
             "Status": "Open",
             "Comment": "Update springFramework to 5.2.15 or later"
+        },
+        "No Vulnerability": {
+            "Status": "No Vulnerability",
+            "Comment": "No Vulnerability"
         }
     },
     "accessors-smart-1.2.jar": {
