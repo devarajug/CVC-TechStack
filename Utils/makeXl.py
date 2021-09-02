@@ -116,6 +116,7 @@ class CreateXl:
                 worksheet.freeze_panes = worksheet['A2']
                 worksheet.sheet_properties.tabColor = '5FABE6'
             workbook.save(self.xls_file_name)
+            print()
             print("[Info] Excel created successfully....")
         except Exception as e:
             print("Unable to create xls....")
