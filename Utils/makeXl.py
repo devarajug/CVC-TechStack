@@ -9,6 +9,7 @@ from openpyxl.styles import Font
 from openpyxl.styles import Alignment
 from openpyxl.styles import PatternFill
 from openpyxl.utils import get_column_letter
+from comments import Comments
 from get_techstack_vulnerabilities import FetchTechStackVulnerabilities
 
 class CreateXl:
@@ -121,7 +122,7 @@ class CreateXl:
 if __name__ == "__main__":
 
     filterwarnings('ignore')
-
+    comments_data = Comments().readAuditorCommentsFile()
     if len(argv[1:]) > 1:
         proxyname = argv[1]
         proxyport = argv[2]
@@ -129,6 +130,7 @@ if __name__ == "__main__":
         proxypass = argv[4]
 
         techstack = FetchTechStackVulnerabilities(
+            comments=comments_data,
             proxy_name=proxyname,
             proxy_port=proxyport,
             proxy_user=proxyuser,
@@ -137,7 +139,9 @@ if __name__ == "__main__":
         df_tech_stack = techstack.techStackDataToDf()
         output_location = argv[5].split("\\")
     else:
-        techstack =  FetchTechStackVulnerabilities()
+        techstack =  FetchTechStackVulnerabilities(
+            comments=comments_data
+        )
         df_tech_stack = techstack.techStackDataToDf()
         output_location = argv[1].split("\\")
 
