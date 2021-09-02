@@ -22,7 +22,6 @@ class CreateXl:
     
     def create(self):
         try:
-
             workbook = Workbook()
             workbook.remove(workbook.active)
             header_font = Font(name='Calibri',bold=True,color='FFFFFF')
@@ -123,9 +122,25 @@ if __name__ == "__main__":
 
     filterwarnings('ignore')
 
-    techstack = FetchTechStackVulnerabilities()
-    df_tech_stack = techstack.techStackDataToDf()
-    output_location = argv[1].split("\\")
+    if len(argv[1:]) > 1:
+        proxyname = argv[1]
+        proxyport = argv[2]
+        proxyuser = argv[3]
+        proxypass = argv[4]
+
+        techstack = FetchTechStackVulnerabilities(
+            proxy_name=proxyname,
+            proxy_port=proxyport,
+            proxy_user=proxyuser,
+            proxy_pass=proxypass
+        )
+        df_tech_stack = techstack.techStackDataToDf()
+        output_location = argv[5].split("\\")
+    else:
+        techstack =  FetchTechStackVulnerabilities()
+        df_tech_stack = techstack.techStackDataToDf()
+        output_location = argv[1].split("\\")
+
     output_location.insert(1, sep)
     
     xls = CreateXl(
