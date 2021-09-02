@@ -27,5 +27,6 @@ The use of this project is to automate the thirdparty compaonent check and also 
 # LICENSE
 
 Copyright (c) 2021 Devaraju Garigapati
+
 This repository is licensed under the [MIT](https://opensource.org/licenses/MIT) license.
 See [LICENSE](https://opensource.org/licenses/MIT) for details.
