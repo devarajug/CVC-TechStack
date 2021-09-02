@@ -2,9 +2,17 @@
 
 The use of this project is to automate the thirdparty compaonent check and also fetch the vulnerabilities of Technology Stack Used in Project.
 
+Once clone the project switch either **winodws** or **linux** based on your os using below command
+
+```
+git switch windows # for windows os
+git switch linux # for linux os
+
+```
+
 # HOW IT WORKS
 
-- Once you run the **[cvc-scan.bat](https://github.com/devarajug/CVC-TechStack/blob/main/cvc-scan.bat)** file 
+- Once you run the **[cvc-scan](https://github.com/devarajug/CVC-TechStack/blob/main/cvc-scan.bat)** file 
 - It asks for the following inputs:
     - Location of Thirdparty Components(Jar) used in application to scan.
     - Another location to store scan output files.
