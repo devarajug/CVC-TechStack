@@ -80,8 +80,8 @@ class CreateXl:
                     ('CVE', 30),
                     ('Severity', 15),
                     ('Status', 15),
-                    ('Auditor Comments', 40),
-                    ('Developer Comments', 40)
+                    ('Auditor Comment', 40),
+                    ('Developer Comment', 40)
                 ]
 
                 index_value = 1 if self.df_cvc is not None else 0
