@@ -1,6 +1,6 @@
 @echo off
 
-set /p input="Enter Jars Location: "
+set /p input="Enter ThirdParty Components Location: "
 set /p output="Enter Output Location: "
 set /p proxycheck="Are You Running This Script Behind Proxy Y/N : "
 
