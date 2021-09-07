@@ -119,8 +119,7 @@ class CreateXl:
             print()
             print("[Info] Excel created successfully....")
         except Exception as e:
-            print("Unable to create xls....")
-            sysexit(e)
+            print("Unable to create xls....", str(e))
 
 if __name__ == "__main__":
 
