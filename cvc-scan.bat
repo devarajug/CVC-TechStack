@@ -2,7 +2,7 @@
 
 set /p input="Enter ThirdParty Components Location: "
 set /p output="Enter Output Location: "
-set /p proxycheck="Are You Running This Script Behind Proxy Y/N : "
+set /p proxycheck="Are You Using Proxy Y/N : "
 
 set "condition=0"
 
