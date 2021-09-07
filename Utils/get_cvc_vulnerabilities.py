@@ -23,10 +23,11 @@ class FetchCvcVulnerabilities:
                         data = sub(self.remove_error, '', data)
                 cvcJsonData = loads(data)
             except Exception as e:
-                print("[Error] unable read dependency check json file....")
-                sysexit(e)
+                cvcJsonData = {}
+                print("[Error] unable read dependency check json file....", str(e))
         else:
-            sysexit("[Error] unable read dependency check json file....")
+            cvcJsonData = {}
+            print("[Error] unable read dependency check json file....")
         return cvcJsonData
     
     def cvcJsonDataToDataFrame(self):
@@ -77,6 +78,5 @@ class FetchCvcVulnerabilities:
             )
 
         except Exception as e:
-            print("[Error] unable to convert cvc data to data frame....")
-            sysexit(e)
+            print("[Error] unable to convert cvc data to data frame....", str(e))
         return df_cvc
