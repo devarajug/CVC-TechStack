@@ -130,7 +130,8 @@ if __name__ == "__main__":
         proxyport = argv[2]
         proxyuser = argv[3]
         proxypass = argv[4]
-        escaped_path = argv[5].split("\\")
+        input_paths = argv[5].split(",")
+        escaped_path = [path for path in input_paths if "input" in path or "inpath" in path][0].split("\\")
         output_path = argv[6]
         output_location = output_path.split("\\")
         output_location.insert(1, sep)
