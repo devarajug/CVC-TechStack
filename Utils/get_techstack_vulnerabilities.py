@@ -44,7 +44,7 @@ class FetchTechStackVulnerabilities:
     def getTechStackDetails(self):
 
         try:
-            with open(join(dirname(abspath(__file__)), 'tech_stack_details.json'), 'r') as rb:
+            with open(join(dirname(dirname(abspath(__file__))), 'tech_stack_details.json'), 'r') as rb:
                 cpematchstrings = loads(rb.read())
 
         except Exception as e:
