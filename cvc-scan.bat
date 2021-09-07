@@ -72,7 +72,7 @@ goto end
 :end
 
     del scan.bat
-    call python "Utils\allissuescount_cvc.py"
+    call python "Utils\allissuescount_cvc.py" %output%
 
     echo.
     echo [Info] Scan Finished Reports Generated...
