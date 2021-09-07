@@ -1,5 +1,5 @@
 from os import sep
-from io import BytesIO
+from sys import argv
 from os.path import join
 from os.path import abspath
 from os.path import dirname
@@ -43,6 +43,6 @@ class CvcScanCommand:
 
 
 if __name__ == "__main__":
-    input_locations = "D:\\sample\\input,D:\\sample\\assets"
+    input_locations = argv[1]
     command = CvcScanCommand(input_locations)
     command.generate()
