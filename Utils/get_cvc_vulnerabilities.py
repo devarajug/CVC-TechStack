@@ -4,7 +4,6 @@ from re import compile
 from re import sub
 from json import loads
 import pandas as pd
-from sys import exit as sysexit
 
 class FetchCvcVulnerabilities:
 

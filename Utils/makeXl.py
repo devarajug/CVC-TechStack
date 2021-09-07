@@ -1,8 +1,7 @@
-from os import path, sep
+from os import sep
 from sys import argv
 from os.path import join
 from datetime import datetime
-from sys import exit as sysexit
 from warnings import filterwarnings
 from openpyxl import Workbook
 from openpyxl.styles import Font
