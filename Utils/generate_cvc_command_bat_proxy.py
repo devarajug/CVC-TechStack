@@ -10,7 +10,7 @@ class CvcScanCommand:
     def __init__(self, input_locations):
         self.cvc_command_file = join(dirname(dirname(abspath(__file__))), 'scan.bat')
         self.input_locations = input_locations
-        self.scan_template = '''call ".\dependency-check\bin\dependency-check.bat"^
+        self.scan_template = '''call ".\\dependency-check\\bin\\dependency-check.bat"^
         --project "Jile"^
         -f "JSON" -f "HTML"^
         --enableExperimental^
