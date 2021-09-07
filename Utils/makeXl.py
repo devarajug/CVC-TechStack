@@ -152,7 +152,6 @@ if __name__ == "__main__":
     else:
         input_paths = argv[1].split(",")
         escaped_path = [path for path in input_paths if "input" in path or "inpath" in path][0].split("\\")
-        print(escaped_path)
         output_location = argv[2].split("\\")
         output_location.insert(1, sep)
         df_cvc = FetchCvcVulnerabilities(
