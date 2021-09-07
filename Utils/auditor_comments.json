@@ -177,18 +177,30 @@
         "CVE-2018-1258": {
             "Status": "Not an issue",
             "Comment": "Spring framework 4.3.* and 5.2.* is getting used. Issue is not applicable for this version."
+        },
+        "CVE-2021-22119": {
+            "Status": "Open",
+            "Comment": "Update spring security to 5.3.10 or later."
         }
     },
     "spring-security-config-5.2.9.RELEASE.jar": {
         "CVE-2018-1258": {
             "Status": "Not an issue",
             "Comment": "Spring framework 4.3.* and 5.2.* is getting used. Issue is not applicable for this version."
+        },
+        "CVE-2021-22119": {
+            "Status": "Open",
+            "Comment": "Update spring security to 5.2.11 or later."
         }
     },
     "spring-security-web-5.3.8.RELEASE.jar": {
         "CVE-2018-1258": {
             "Status": "Not an issue",
             "Comment": "Spring framework 4.3.* and 5.2.* is getting used. Issue is not applicable for this version."
+        },
+        "CVE-2021-22119": {
+            "Status": "Open",
+            "Comment": "Update spring security to 5.3.10 or later."
         }
     },
     "spring-security-core-5.3.8.RELEASE.jar": {
@@ -205,6 +217,10 @@
         "CVE-2018-1258": {
             "Status": "Not an issue",
             "Comment": "Spring framework 4.3.* and 5.2.* is getting used. Issue is not applicable for this version."
+        },
+        "CVE-2021-22119": {
+            "Status": "Open",
+            "Comment": "Update spring security to 5.2.11 or later."
         }
     },
     "spring-security-core-5.2.9.RELEASE.jar": {
@@ -665,18 +681,30 @@
         "CVE-2018-1258": {
             "Status": "Not an Issue",
             "Comment": "Spring framework 4.3.* and 5.2.* is getting used. Issue is not applicable for this version."
+        },
+        "CVE-2021-22119": {
+            "Status": "Open",
+            "Comment": "Update spring security to 5.3.10 or later."
         }
     },
     "spring-security-oauth2-core-5.3.8.RELEASE.jar": {
         "CVE-2018-1258": {
             "Status": "Not an Issue",
             "Comment": "Spring framework 4.3.* and 5.2.* is getting used. Issue is not applicable for this version."
+        },
+        "CVE-2021-22119": {
+            "Status": "Open",
+            "Comment": "Update spring security to 5.3.10 or later."
         }
     },
     "spring-security-oauth2-jose-5.3.8.RELEASE.jar": {
         "CVE-2018-1258": {
             "Status": "Not an Issue",
             "Comment": "Spring framework 4.3.* and 5.2.* is getting used. Issue is not applicable for this version."
+        },
+        "CVE-2021-22119": {
+            "Status": "Open",
+            "Comment": "Update spring security to 5.3.10 or later."
         }
     },
     "spring-security-config-4.2.13.RELEASE.jar": {
@@ -1370,7 +1398,7 @@
         },
         "ReDoS vulnerability in Autolink plugin and Advanced Tab for Dialogs plugin": {
             "Status": "Open",
-            "Comment": "Update ckeditor.js to 4.16.0"
+            "Comment": "Update ckeditor.js to 4.16.2 or later."
         },
         "CVE-2021-32808": {
             "Status": "Open",
@@ -2063,10 +2091,6 @@
         "CVE-2021-22118": {
             "Status": "Open",
             "Comment": "Update springFramework to 5.2.15 or later"
-        },
-        "No Vulnerability": {
-            "Status": "No Vulnerability",
-            "Comment": "No Vulnerability"
         }
     },
     "accessors-smart-1.2.jar": {
@@ -2377,6 +2401,24 @@
         "CVE-2021-28170": {
             "Status": "Open",
             "Comment": "Update jakarta.el to 4.0.1 or later."
+        }
+    },
+    "bcprov-jdk15on-1.61.jar": {
+        "CVE-2020-15522": {
+            "Status": "Open",
+            "Comment": "Update bcprov-jdk15on to 1.66 or later."
+        }
+    },
+    "jsoup-1.11.2.jar": {
+        "CVE-2021-37714": {
+            "Status": "Open",
+            "Comment": "Update jsoup to 1.14.2 or later."
+        }
+    },
+    "spring-ws-core-3.0.0.RELEASE.jar": {
+        "CVE-2019-3773": {
+            "Status": "Open",
+            "Comment": "Update Spring WS Core to 3.0.10 or later."
         }
     }
 }
