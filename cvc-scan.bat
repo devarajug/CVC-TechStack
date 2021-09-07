@@ -44,8 +44,6 @@ goto end
 
     call python "Utils\makeXl.py" %proxyname% %proxyport% %proxyuser% %proxypass% %input% %output%
 
-    del scan.bat
-
 :withoutproxy
 
     if exist "%cd%\venv" (
@@ -70,9 +68,12 @@ goto end
     
     call python "Utils\makeXl.py" %input% %output%
 
-    del scan.bat
 
 :end
+
+    del scan.bat
+    call python "Utils\allissuescount_cvc.py"
+
     echo.
     echo [Info] Scan Finished Reports Generated...
     deactivate
