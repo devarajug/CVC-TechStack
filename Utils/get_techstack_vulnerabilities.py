@@ -38,8 +38,7 @@ class FetchTechStackVulnerabilities:
             data = request.get(url=url)
         except Exception as e:
             data = None
-            print("[error] unable connect to web to fecth techstack data..")
-            sysexit(e)
+            print("[Error] unable connect to web to fecth techstack data..", str(e))
         return data
     
     def getTechStackDetails(self):
@@ -49,8 +48,7 @@ class FetchTechStackVulnerabilities:
                 cpematchstrings = loads(rb.read())
 
         except Exception as e:
-            print("[Error] Unable to read tech stack data from file, file may missed or deleted...")
-            sysexit(e)
+            print("[Error] Unable to read tech stack data from file, file may missed or deleted...", str(e))
         return cpematchstrings
     
     def scrapeTechStackData(self, cpe, startIndex=0):
@@ -64,8 +62,7 @@ class FetchTechStackVulnerabilities:
             TechStackData = parsed_data.select_one('table[data-testid=vuln-results-table]')
         except Exception as e:
             TechStackData = None
-            print("[Error] unable to fecth details from parsed data ....")
-            sysexit(e)
+            print("[Error] unable to fecth details from parsed data ....", str(e))
         return TechStackData
 
     def techStackDataToDf(self):
@@ -156,7 +153,7 @@ class FetchTechStackVulnerabilities:
                             status.append("No Vulnerability")
                             print(productname[-1]+ " : " + cve[-1] + " : " + severity[-1])
                 else:
-                    sysexit("[Error] Unable to fetch no of issues please re run script...")
+                    print("[Error] Unable to fetch no of issues please re run script...")
             result_data_tech_stack = zip(productname,description,cve,severity, status, auditor_comment)
             df_tech_stack = pd.DataFrame(
                 list(result_data_tech_stack),
@@ -164,6 +161,5 @@ class FetchTechStackVulnerabilities:
             )
         except Exception as e:
             df_tech_stack = None
-            print("[Error] unable to convert techstack data to dataframe ....")
-            sysexit(e)
+            print("[Error] unable to convert techstack data to dataframe ....", str(e))
         return df_tech_stack
