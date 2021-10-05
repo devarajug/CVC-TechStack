@@ -42,5 +42,5 @@ class CvcScanCommand:
 if __name__ == "__main__":
     project = argv[1]
     input_locations = argv[2]
-    command = CvcScanCommand(input_locations)
+    command = CvcScanCommand(project, input_locations)
     command.generate()

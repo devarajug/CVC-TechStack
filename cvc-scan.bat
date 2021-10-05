@@ -23,7 +23,7 @@ goto end
     set /p proxyuser="Enter Proxy User: "
     set /p proxypass="Enter Proxy Password: "
 
-    if exist "%cd%\venv" (
+    if exist "%cd%\venv\Scripts\activate" (
         call venv\Scripts\activate
         pip install -r requirements.txt
     ) else (
@@ -33,7 +33,7 @@ goto end
         pip install -r requirements.txt
     )
 
-    if exist "%cd%\dependency-check\bin\" (
+    if exist "%cd%\dependency-check\bin\dependency-check.bat" (
         call python ".\Utils\dct-version-update.py" %proxyname% %proxyport% %proxyuser% %proxyport%
     ) else (
         call python ".\Utils\dct-download.py" %proxyname% %proxyport% %proxyuser% %proxyport%
@@ -47,7 +47,7 @@ goto end
 
 :withoutproxy
 
-    if exist "%cd%\venv" (
+    if exist "%cd%\venv\Scripts\activate" (
         call venv\Scripts\activate
         pip install -r requirements.txt
     ) else (
@@ -57,7 +57,7 @@ goto end
         pip install -r requirements.txt
     )
 
-    if exist "%cd%\dependency-check\bin\" (
+    if exist "%cd%\dependency-check\bin\dependency-check.bat" (
         call python "Utils\dct-version-update.py"
     ) else (
         call python "Utils\dct-download.py"
@@ -77,5 +77,7 @@ goto end
 
     echo.
     echo [Info] Scan Finished Reports Generated...
+    echo.
     deactivate
+    
     
