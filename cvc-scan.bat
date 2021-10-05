@@ -2,7 +2,7 @@
 
 set /p input="Enter ThirdParty Components Location: "
 set /p output="Enter Output Location: "
-set /p proxycheck="Are You Running This Script Behind Proxy Y/N : "
+set /p proxycheck="Are You Using Proxy Y/N : "
 
 set "condition=0"
 
@@ -38,20 +38,9 @@ goto end
         call python ".\Utils\dct-download.py" %proxyname% %proxyport% %proxyuser% %proxyport%
     )
     
-    call ".\dependency-check\bin\dependency-check.bat"^
-        --project "Jile"^
-        -f "JSON" -f "HTML"^
-        --enableExperimental^
-        --enableRetired^
-        --disableAssembly^
-        --prettyPrint^
-        --disableYarnAudit^
-        --proxyserver "%proxyname%"^
-        --proxyport "%proxyport%"^
-        --proxyuser "%proxyuser%"^
-        --proxypass "%proxypass%"^
-        --scan "%input%"^
-        --out "%output%"
+    call python "Utils\generate_cvc_command_bat_proxy.py" %input%
+
+    call scan.bat
 
     call python "Utils\makeXl.py" %proxyname% %proxyport% %proxyuser% %proxypass% %input% %output%
 
@@ -73,20 +62,18 @@ goto end
         call python "Utils\dct-download.py"
     )
     
-    call ".\dependency-check\bin\dependency-check.bat"^
-        --project "Jile"^
-        -f "JSON" -f "HTML"^
-        --enableExperimental^
-        --enableRetired^
-        --disableAssembly^
-        --prettyPrint^
-        --disableYarnAudit^
-        --scan "%input%"^
-        --out "%output%"
+    call python "Utils\generate_cvc_command_bat_without_proxy.py" %input%
+
+    call scan.bat
     
     call python "Utils\makeXl.py" %input% %output%
 
+
 :end
+
+    del scan.bat
+    call python "Utils\allissuescount_cvc.py" %output%
+
     echo.
     echo [Info] Scan Finished Reports Generated...
     deactivate

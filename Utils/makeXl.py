@@ -1,8 +1,7 @@
-from os import path, sep
+from os import sep
 from sys import argv
 from os.path import join
 from datetime import datetime
-from sys import exit as sysexit
 from warnings import filterwarnings
 from openpyxl import Workbook
 from openpyxl.styles import Font
@@ -119,8 +118,7 @@ class CreateXl:
             print()
             print("[Info] Excel created successfully....")
         except Exception as e:
-            print("Unable to create xls....")
-            sysexit(e)
+            print("Unable to create xls....", str(e))
 
 if __name__ == "__main__":
 
@@ -132,7 +130,10 @@ if __name__ == "__main__":
         proxyport = argv[2]
         proxyuser = argv[3]
         proxypass = argv[4]
-        escaped_path = argv[5].split("\\")
+        input_paths = argv[5].split(",")
+        print(input_paths)
+        print([path for path in input_paths if "input" in path or "inpath" in path])
+        escaped_path = [path for path in input_paths if "input" in path or "inpath" in path][0].split("\\")
         output_path = argv[6]
         output_location = output_path.split("\\")
         output_location.insert(1, sep)
@@ -149,7 +150,8 @@ if __name__ == "__main__":
             proxy_pass=proxypass
         ).techStackDataToDf()
     else:
-        escaped_path = argv[1].split("\\")
+        input_paths = argv[1].split(",")
+        escaped_path = [path for path in input_paths if "input" in path or "inpath" in path][0].split("\\")
         output_location = argv[2].split("\\")
         output_location.insert(1, sep)
         df_cvc = FetchCvcVulnerabilities(
@@ -157,7 +159,7 @@ if __name__ == "__main__":
             comments=comments_data,
             escaped_path=escaped_path
         ).cvcJsonDataToDataFrame()
-        df_tech_stack =  FetchTechStackVulnerabilities(
+        df_tech_stack = FetchTechStackVulnerabilities(
             comments=comments_data
         ).techStackDataToDf()
         

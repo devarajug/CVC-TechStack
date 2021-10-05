@@ -3,7 +3,6 @@ from os.path import dirname
 from os.path import abspath
 from os.path import isfile
 from json import loads
-from sys import exit as sysexit
 
 class Comments:
 
@@ -17,9 +16,8 @@ class Comments:
                     comments_data = loads(rb.read())
             except Exception as e:
                 comments_data = {}
-                print("[Error] Unable to read auditor comments file make sure file avaliable at Utils folder..")
-                sysexit(e)
+                print("[Error] Unable to read auditor comments file make sure file avaliable at Utils folder..", str(e))
         else:
             comments_data = {}
-            sysexit("[Error] Unable to read auditor comments file make sure file avaliable at Utils folder..")
+            print("[Error] Unable to read auditor comments file make sure file avaliable at Utils folder..")
         return comments_data
