@@ -1,5 +1,6 @@
 @echo off
 
+set /p project="Enter Project Name: "
 set /p input="Enter ThirdParty Components Location: "
 set /p output="Enter Output Location: "
 set /p proxycheck="Are You Using Proxy Y/N : "
@@ -38,7 +39,7 @@ goto end
         call python ".\Utils\dct-download.py" %proxyname% %proxyport% %proxyuser% %proxyport%
     )
     
-    call python "Utils\generate_cvc_command_bat_proxy.py" %input%
+    call python "Utils\generate_cvc_command_bat_proxy.py" %project% %input%
 
     call scan.bat
 
@@ -62,7 +63,7 @@ goto end
         call python "Utils\dct-download.py"
     )
     
-    call python "Utils\generate_cvc_command_bat_without_proxy.py" %input%
+    call python "Utils\generate_cvc_command_bat_without_proxy.py" %project% %input%
 
     call scan.bat
     
