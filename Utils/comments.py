@@ -7,12 +7,12 @@ from json import loads
 class Comments:
 
     def __init__(self):
-        self.auditor_comments_file = join(dirname(abspath(__file__)), 'auditor_comments.json')
+        self.developer_comments_file = join(dirname(abspath(__file__)), 'developer_comments.json')
     
     def readAuditorCommentsFile(self):
-        if isfile(self.auditor_comments_file):
+        if isfile(self.developer_comments_file):
             try:
-                with open(self.auditor_comments_file, 'r', encoding='utf8') as rb:
+                with open(self.developer_comments_file, 'r', encoding='utf8') as rb:
                     comments_data = loads(rb.read())
             except Exception as e:
                 comments_data = {}

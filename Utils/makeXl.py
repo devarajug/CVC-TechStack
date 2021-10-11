@@ -38,8 +38,9 @@ class CreateXl:
                     ('Severity', 15),
                     ('FilePath', 40),
                     ('Status', 15),
-                    ('Auditor Comment', 40),
-                    ('Developer Comment', 40)
+                    ('Developer Comment', 40),
+                    ('Auditor Comment', 40)
+                    
                 ]
 
                 worksheet = workbook.create_sheet(title='CVC', index=0)
@@ -63,7 +64,7 @@ class CreateXl:
                         (self.df_cvc.loc[i, 'Severity'], 'Normal'),
                         (self.df_cvc.loc[i, 'FilePath'], 'Normal'),
                         (self.df_cvc.loc[i, 'Status'], 'Normal'),
-                        (self.df_cvc.loc[i, 'Auditor Comment'], 'Normal'),
+                        (self.df_cvc.loc[i, 'Developer Comment'], 'Normal'),
                     ]
 
                     for col_num, (cell_value, cell_format) in enumerate(row, 1):
@@ -79,8 +80,9 @@ class CreateXl:
                     ('CVE', 30),
                     ('Severity', 15),
                     ('Status', 15),
-                    ('Auditor Comment', 40),
-                    ('Developer Comment', 40)
+                    ('Developer Comment', 40),
+                    ('Auditor Comment', 40)
+                    
                 ]
 
                 index_value = 1 if self.df_cvc is not None else 0
@@ -103,7 +105,7 @@ class CreateXl:
                         (self.df_techstack.loc[i, 'CVE'], 'Normal'),
                         (self.df_techstack.loc[i, 'Severity'], 'Normal'),
                         (self.df_techstack.loc[i, 'Status'], 'Normal'),
-                        (self.df_techstack.loc[i, 'Auditor Comment'], 'Normal'),
+                        (self.df_techstack.loc[i, 'Developer Comment'], 'Normal'),
                     ]
 
                     for col_num, (cell_value, cell_format) in enumerate(row, 1):

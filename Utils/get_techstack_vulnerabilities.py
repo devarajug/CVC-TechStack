@@ -69,7 +69,7 @@ class FetchTechStackVulnerabilities:
         try:
             print()
             print("Analysis Started. It Takes Time to Complete, Please Wait Patiently....")
-            productname, cve, severity, description, auditor_comment, status = [[] for i in range(6)]
+            productname, cve, severity, description, developer_comment, status = [[] for i in range(6)]
             cpeMatchStrings=self.getTechStackDetails()
             for product, cpe in cpeMatchStrings.items():
                 print()
@@ -79,7 +79,7 @@ class FetchTechStackVulnerabilities:
                     cve.append("No Vulnerability")
                     severity.append("No Vulnerability")
                     description.append("No Vulnerability")
-                    auditor_comment.append('No Vulnerability')
+                    developer_comment.append('No Vulnerability')
                     status.append("No Vulnerability")
                     print(productname[-1]+ " : " + cve[-1] + " : " + severity[-1])
                 elif self.noOfIssuesCount <= 20:
@@ -104,7 +104,7 @@ class FetchTechStackVulnerabilities:
                                 cvss2_severity = cvss2_score_severity.split(" ")[-1]
                                 severity.append(cvss2_severity.strip())
                             status.append(self.comments.get(productname[-1], {}).get(cve[-1], {}).get("Status", "Open"))
-                            auditor_comment.append(self.comments.get(productname[-1], {}).get(cve[-1], {}).get("Comment", "need add in JsonFile"))
+                            developer_comment.append(self.comments.get(productname[-1], {}).get(cve[-1], {}).get("Comment", "need add in JsonFile"))
                             non_dispute_issues_count+=1
                         print(productname[-1]+ " : " + cve[-1] + " : " + severity[-1])
                     else:
@@ -113,7 +113,7 @@ class FetchTechStackVulnerabilities:
                             cve.append("No Vulnerability")
                             severity.append("No Vulnerability")
                             description.append("No Vulnerability")
-                            auditor_comment.append('No Vulnerability')
+                            developer_comment.append('No Vulnerability')
                             status.append("No Vulnerability")
                             print(productname[-1]+ " : " + cve[-1] + " : " + severity[-1])
                 elif self.noOfIssuesCount > 20:
@@ -139,7 +139,7 @@ class FetchTechStackVulnerabilities:
                                     cvss2_severity = cvss2_score_severity.split(" ")[-1]
                                     severity.append(cvss2_severity.strip())
                                 status.append(self.comments.get(productname[-1], {}).get(cve[-1], {}).get("Status", "Open"))
-                                auditor_comment.append(self.comments.get(productname[-1], {}).get(cve[-1], {}).get("Comment", "need add in JsonFile"))
+                                developer_comment.append(self.comments.get(productname[-1], {}).get(cve[-1], {}).get("Comment", "need add in JsonFile"))
                                 count_while+=1
                             print(productname[-1]+ " : " + cve[-1] + " : " + severity[-1])
                         self.startIndex+=20
@@ -149,15 +149,15 @@ class FetchTechStackVulnerabilities:
                             cve.append("No vulnerability")
                             severity.append("No vulnerability")
                             description.append("No vulnerability")
-                            auditor_comment.append('No vulnerability')
+                            developer_comment.append('No vulnerability')
                             status.append("No Vulnerability")
                             print(productname[-1]+ " : " + cve[-1] + " : " + severity[-1])
                 else:
                     print("[Error] Unable to fetch no of issues please re run script...")
-            result_data_tech_stack = zip(productname,description,cve,severity, status, auditor_comment)
+            result_data_tech_stack = zip(productname,description,cve,severity, status, developer_comment)
             df_tech_stack = pd.DataFrame(
                 list(result_data_tech_stack),
-                columns = ['Product','Description','CVE','Severity', 'Status', 'Auditor Comment']
+                columns = ['Product','Description','CVE','Severity', 'Status', 'Developer Comment']
             )
         except Exception as e:
             df_tech_stack = None
